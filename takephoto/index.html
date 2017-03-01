@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="注册向导，滚动，表单，jquery" />
+<meta name="description" content="Helloweba演示平台，演示XHTML、CSS、jquery、PHP案例和示例" />
+<title>jQuery+PHP+Mysql在线拍照和在线浏览照片</title>
+<link rel="stylesheet" type="text/css" href="http://www.helloweba.com/demo/css/main.css" />
+<style type="text/css">
+#camera{width:598px; height:525px; position:fixed; bottom:-466px; left:50%; margin-left:-300px; border:1px solid #f0f0f0; background:url(images/cam_bg.jpg) repeat-y; -moz-border-radius:4px 4px 0 0; -webkit-border-radius:4px 4px 0 0; border-radius:4px 4px 0 0; -moz-box-shadow:0 0 4px rgba(0,0,0,0.6); -webkit-box-shadow:0 0 4px rgba(0,0,0,0.6); box-shadow:0 0 4px rgba(0,0,0,0.6);}
+#cam{width:100%; height:66px; display:block; position:absolute; top:0; left:0; background:url(images/cam.png) no-repeat center center; cursor:pointer}
+#webcam{width:520px; height:370px; margin:66px auto 22px; line-height:360px; background:#ccc; color:#666; text-align:center}
+.button_pane{text-align:center;}
+.btn_blue,.btn_green{width:99px; height:38px; line-height:32px; margin:0 4px; border:none; display:inline-block; text-align:center; font-size:14px; color:#fff !important; text-shadow:1px 1px 1px #277c9b; background:url(images/buttons.png) no-repeat}
+.btn_green{background:url(images/buttons.png) no-repeat right top;text-shadow:1px 1px 1px #498917;}
+.hidden{display:none}
+
+#photos{width:80%; margin:40px auto}
+#photos:hover a{opacity:0.5}
+#photos a:hover{opacity:1}
+</style>
+</head>
+
+<body>
+<div id="header">
+   <div id="logo"><h1><a href="http://www.helloweba.com" title="返回helloweba首页">helloweba</a></h1></div>
+</div>
+
+<div id="main" style="width:90%">
+   <h2 class="top_title"><a href="http://www.helloweba.com/view-blog-179.html">jQuery+PHP+Mysql在线拍照和在线浏览照片</a></h2>
+   <div id="photos"></div>
+   
+   <div id="camera">
+       <div id="cam"></div>
+       <div id="webcam"></div>
+       <div id="buttons">
+    	  <div class="button_pane" id="shoot">
+        	<a id="btn_shoot" href="" class="btn_blue">拍照</a>
+          </div>
+          <div class="button_pane hidden" id="upload">
+        	<a id="btn_cancel" href="" class="btn_blue">取消</a> <a id="btn_upload" href="" class="btn_green">上传</a>
+          </div>
+       </div>
+   </div>
+   
+</div>
+<div id="footer">
+    <p>Powered by helloweba.com  允许转载、修改和使用本站的DEMO，但请注明出处：<a href="http://www.helloweba.com">www.helloweba.com</a></p>
+</div>
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript" src="http://www.hizh.cn/r/cms/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="js/webcam.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+
+<p id="stat"><script type="text/javascript" src="http://js.tongji.linezing.com/1870888/tongji.js"></script></p>
+</body>
+</html>

@@ -1,0 +1,9 @@
+    <style type="text/css">@import "j/date/jquery.datepick.css";</style> 
+    <script type="text/javascript" src="j/date/jquery.datepick.js"></script>
+    <script type="text/javascript" src="j/date/jquery.datepick-zh-CN.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#TextBox1").datepick({dateFormat: 'yy-mm-dd'});
+            $("#TextBox2").datepick({dateFormat: 'yy-mm-dd'});
+        });
+    </script>

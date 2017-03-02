@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>管理系统</title>
+<title>教育信息工作管理系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -34,7 +34,7 @@
 	<div class="main_box">
 		<div class="login_box">
 			<div class="login_logo">				
-				<h2>管理系统</h2>
+				<h2>教育信息工作管理系统</h2>
 			</div>             
             
 			<div class="login_form">
@@ -69,7 +69,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="bottom">Copyright &copy; 2014 - 2016 <a href="#">系统登陆</a></div>
+		<div class="bottom">Copyright &copy; 2017 <a href="http://www.hizh.cn">珠海新闻网技术支持</a></div>
 	</div>
 </div>
 

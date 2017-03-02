@@ -172,7 +172,8 @@ class cms extends MY_Controller {
 	        $this->load->view('admin/cms/contentprofile',$data);	        
 	    }else{
 	        $postdata=isset($_POST)?$_POST:$this->showerror("非法操作");	        
-	        $channelid= intval($this->uri->segment(3));
+	        $channelid= intval($this->uri->segment(3))?intval($this->uri->segment(3)):$_POST["cid"];
+// 	        $channelid= $channelid?
 	        if(!$channelid){
 	            $this->showInfo("非法操作", site_url("cms"));
 	            die;
@@ -209,7 +210,7 @@ class cms extends MY_Controller {
 	        $this->load->view('admin/cms/contentprofile',$data);
 	    }else{
 	        $postdata=isset($_POST)?$_POST:$this->showerror("非法操作");	         
-	        $channelid= intval($this->uri->segment(3));
+	         $channelid= intval($this->uri->segment(3))?intval($this->uri->segment(3)):$_POST["cid"];
 	        if(!$channelid){
 	            $this->showInfo("非法操作", site_url("cms"));
 	        }
@@ -225,8 +226,22 @@ class cms extends MY_Controller {
 	
 	public function delcontent(){
 	    $this->del();
-	}	
+	}
+		
+	//change status 
 	
+	public function chstatus(){
+	        $idStr=isset($_GET["idStr"])?$_GET["idStr"]:redirect("admin");
+	        $status=isset($_GET["status"])?$_GET["status"]:redirect("admin");
+	    
+	        $ids=explode(',',$idStr);
+	    
+	        $this->db->where_in("id",$ids);
+	        $this->db->set("state",$status);
+	        $this->db->update("cms_content");
+	    
+	        $this->showInfo("更改成功", $_SERVER["HTTP_REFERER"]);
+	}
 	private function get_group_channel_map($channelList){
 	    $channelMap=array();
 	    foreach ($channelList as $key=>$val){

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>管理系统</title>
+    <title>教育信息工作管理系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url("static")?>/css/bootstrap.min.css" rel="stylesheet">
@@ -195,7 +195,19 @@
 		thisObj.value!="all"?document.getElementById("selectedAll").checked=isAllChecked:false;		
 	}
 </script>
-
+<style>
+.navbar-static-top {
+    background: #c26e2a;
+}
+.navbar-top-links >li>a:hover, .navbar-top-links >li>a:focus {
+    text-decoration: none;
+    background-color: #734727;
+}
+.navbar-top-links .open>a, .navbar-top-links .open>a:hover, .navbar-top-links .open>a:focus {
+    background-color: #8c591a;
+    border-color: #c7760e;
+}
+</style>
 </head>
 
 <body style="overflow-x: hidden;">
@@ -211,7 +223,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url("admin")?>">管理系统</a>
+                <a class="navbar-brand" href="<?php echo site_url("admin")?>">教育信息工作管理系统</a>
             </div>
             <!-- /.navbar-header -->
 

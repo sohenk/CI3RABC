@@ -1,7 +1,36 @@
 <?php $this->load->view("admin/header")?>
 <script type="text/javascript" src="<?php echo base_url("static")?>/qrcode/qrcode.js"></script>
 	<script type="text/javascript" src="<?php echo base_url("static")?>/qrcode/jquery.qrcode.js"></script>
-<style>
+<script type="text/javascript">
+function cmsckSelected(status){
+	var selectedContentList=document.getElementsByName("contentCheck");
+	var selectedContentIds=[];
+	for(var i=0;i<selectedContentList.length;i++){
+		var selectedContent=selectedContentList[i];
+		if(selectedContent.checked){
+			selectedContentIds[selectedContentIds.length]=selectedContent.value;
+		}
+	}
+
+	if(selectedContentIds.length<1){
+		alert("请选中要更改状态的数据");
+		return false;
+	}
+
+	if(confirm("确定，更改选中记录？")){
+		var idsStr="";
+		for(var i=0;i<selectedContentIds.length;i++){
+			if(i>0){
+				idsStr+=",";
+			}
+			idsStr+=selectedContentIds[i];
+		}
+		window.location.href="<?php echo site_url("cms/chstatus")?>?idStr="+idsStr+"&status="+status;
+	}
+	else{return false;}
+}
+</script>
+	<style>
 table th,table td {
 	text-align: center;
 }
@@ -58,11 +87,10 @@ table th,table td {
 									<table id="contentList" class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
 										<tr>
 											<th><input id="selectedAll" onclick="isSelectedAll(this)" type="checkbox" value="all" />全选</th>
-											<th>排序</th>
+											
 											<th>标题</th>
-											<th>作者</th>
+											<th>上传者</th>
 											<th>时间</th>
-											<th>浏览量</th>
 											<th>状态</th>
 											<th>操作</th>
 										</tr>
@@ -70,12 +98,10 @@ table th,table td {
                             <?php foreach($cms_contentlist as $val):?>
                               <tr>
 											<td class="sorting_1"><input onclick="isSelectedAll(this)" type="checkbox" name="contentCheck" value="<?php echo $val->id;?>" /></td>
-											<td class="sorting_1"><?php echo $val->order?></td>
 											<td class="sorting_1"><?php echo $val->title?></td>
 											<td class="sorting_1"><?php echo $val->author?></td>											
-											<td class="sorting_1"><?php echo date("Y-m-d H:i:s",$val->time)?></td>
-											<td class="sorting_1"><?php echo $val->views?></td>
-											<td class="sorting_1"><?php echo $val->state?></td>
+											<td class="sorting_1"><?php echo date("Y-m-d",$val->time)?></td>
+											<td class="sorting_1"><?php echo getStatusBtn($val->state)?></td>
 
 											<td class="center   "><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal<?php echo $val->id?>">查看</button> <a
 												href="<?php echo site_url("cms/editcontent/$val->cid?id=$val->id")?>" type="button" class="btn btn-info btn-xs" >编辑</a> <a href="javascript:void(0)"
@@ -89,12 +115,17 @@ table th,table td {
                                             <h4 class="modal-title" id="myModalLabel"><?php echo $val->title?></h4>
                                         </div>
                                         <div class="modal-body text-center" >
-                                      			<div class="qrCode<?php echo $val->id;?>"></div>
+                                        <?php echo $val->content;?>
+                                      	<!--
+                                      			 <div class="qrCode<?php echo $val->id;?>"></div>
                                         <script type="text/javascript">
                                         $('.qrCode<?php echo $val->id;?>').qrcode({width:300,height:300,text:'<?php echo site_url("show/content?id=$val->id")?>'});
                                         </script>
+                                         -->
                                         </div>
                                         <div class="modal-footer">
+                                        											<?php  if($this->user->get_user_ctr()){?><a href="<?php echo site_url("cms/chstatus?idStr=$val->id&status=2")?>"  type="button" class="btn btn-success btn-xs">审核</a>
+											<a href="<?php echo site_url("cms/chstatus?idStr=$val->id&status=0")?> type="button" class="btn btn-warning btn-xs">退回</a><?php  }?>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
                                     </div>
@@ -106,8 +137,11 @@ table th,table td {
 										</tr>
                           <?php endforeach;?>
                            <tr>
-											<td><a href="javascript:void(0)" onclick="cmsDelSelected('cms_content')" type="button" class="btn btn-danger btn-xs">删除</a></td>
-											<td colspan="7" class="center" align="center">                        
+											<?php  if($this->user->get_user_ctr()){?><td><a href="javascript:void(0)" onclick="cmsckSelected(2)" type="button" class="btn btn-success btn-xs">审核</a></td>
+											<td><a href="javascript:void(0)" onclick="cmsckSelected(0)" type="button" class="btn btn-warning btn-xs">退回</a></td><?php  }?>
+											 <td><a href="javascript:void(0)" onclick="cmsDelSelected('cms_content')" type="button" class="btn btn-danger btn-xs">删除</a></td>
+											 <td colspan="5" class="center" align="center">  
+											                    
                         <?php echo $page?>
                         </td>
 										</tr>

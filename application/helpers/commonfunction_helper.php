@@ -192,6 +192,18 @@ function postmail($to,$subject = "",$body = ""){
         echo "<meta http-equiv='Refresh' content='0;URL=".$url."'>";
     }
 
-
+    //状态显示
+    function getStatusBtn($status){
+        $statuData=array();
+        switch($status){
+            case 0:$statuData["btnclass"]="btn-danger";$statuData["str"]="退回";break;
+            case 1:$statuData["btnclass"]="btn-warning";$statuData["str"]="未审核";break;
+            case 2:$statuData["btnclass"]="btn-success";$statuData["str"]="已审核";break;
+            default:$statuData["btnclass"]="btn-default";$statuData["str"]="未知";break;
+        }
+        $btnStr='<button type="button" class="btn %s btn-xs" data-toggle="modal">%s</button>';
+        $statusBtn=sprintf($btnStr,$statuData["btnclass"],$statuData["str"]);
+        return $statusBtn;
+    }
 
 ?>
